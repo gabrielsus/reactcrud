@@ -4,9 +4,6 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import {obtenerAdministrador} from './accesoDatos.js'
-let matricula= 134
-let nombre="Nombre administración"
-let direccion="22 Acacias Avenue"
 function App() {
   const [count, setCount] = useState(0)
   const [matricula, setMatricula] = useState('');
