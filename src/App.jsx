@@ -4,6 +4,7 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import {obtenerAdministrador} from './accesoDatos.js'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
   const [count, setCount] = useState(0)
   const [matricula, setMatricula] = useState('');
@@ -19,7 +20,10 @@ function App() {
   };
 
   return (
-    <>
+              <BrowserRouter>
+          <Routes>
+            <Route path="/" element={
+          <>
           <form className="form">
             <label titulo1="titulo1" htmlFor="titulo1">Ingrese número de matrícula </label>
             <input type="text" id="inputMatricula" name="matricula" value = {matricula} onChange={(e) => setMatricula(e.target.value)} />
@@ -43,7 +47,9 @@ function App() {
               <td>{datosAdministrador?.correo}</td>
             </tr>
           </table>
-    </>
+    </>} />
+    </Routes>
+    </BrowserRouter>
   )
 }
 
