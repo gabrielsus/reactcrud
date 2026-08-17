@@ -12,25 +12,17 @@ export const obtenerAdministrador = async (matricula) => {
 
 export const obtenerPDF = async (ticker,desde,hasta)=> {
     try {
-        const response = await axios.post('http://localhost:8000/descargar-reporte-pedf/',
+        const response = await axios.post('http://localhost:8000/descargar-reporte-pdf/',
         {
             ticker: ticker,
-            desde: desde,
-            hasta: hasta
+            start_date: desde,
+            end_date: hasta
         },
         {
             responseType: 'blob', // Indica que la respuesta será un archivo binario
         }
         );
-        const blob = new Blob([response.data], { type: 'application/pdf' });
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'reporte.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url); // Libera el objeto URL creado
+        return response.data; // Devuelve el contenido del PDF como un Blob
     } catch (error) {
         console.error('Error al obtener el PDF:', error);
         throw error;
